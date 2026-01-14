@@ -1,5 +1,5 @@
 from experiments.utils import train_step, batcher, train_test_split, predict, accuracy, cross_entropy_loss
-from model.init import init_transformer
+from model.init import init_encdec_transformer
 from jax import random
 import matplotlib.pyplot as plt
 
@@ -27,7 +27,7 @@ key, split_key = random.split(key)
 X_train, X_test, y_train, y_test = train_test_split(X, y, 0.2, split_key)
 
 key, init_key = random.split(key)
-params = init_transformer(init_key, n_layers, n_vocab, d_model, n_hidden)
+params = init_encdec_transformer(init_key, n_layers, n_vocab, d_model, n_hidden)
 
 train_losses =[]
 test_losses = []
@@ -41,12 +41,12 @@ for epoch in range(epochs):
     train_loss = 0
     for X_batch, y_batch in batches:
 
-        loss, params = train_step(params, n_heads, X_batch, y_batch, lr)
+        loss, params = train_step(params, n_heads, y_batch, lr, x=X_batch)
         train_loss += loss
 
     train_loss /= (len(X_train) // batch_size)
 
-    test_loss = cross_entropy_loss(params, n_heads, X_test, y_test)
+    test_loss = cross_entropy_loss(params, n_heads, y_test, x=X_test)
     test_pred = predict(X_test, params, n_heads)
     test_acc = accuracy(y_test, test_pred)
 

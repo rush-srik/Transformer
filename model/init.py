@@ -63,7 +63,7 @@ def init_decoder(key, d_model, n_hidden):
 
 
 # Initializes the parameters for a Transformer model with n encoder and decoder blocks
-def init_transformer(key, n_layers, n_vocab, d_model, n_hidden):
+def init_encdec_transformer(key, n_layers, n_vocab, d_model, n_hidden):
 
     transformer_parameters = {}
 
@@ -86,6 +86,32 @@ def init_transformer(key, n_layers, n_vocab, d_model, n_hidden):
 
     parameters = {
         'enc': encoder_parameters,
+        'dec': decoder_parameters,
+        'trans': transformer_parameters
+    }
+
+    return parameters
+
+# Initializes the parameters for a Transformer model with n decoder blocks
+def init_dec_transformer(key, n_layers, n_vocab, d_model, n_hidden):
+
+    transformer_parameters = {}
+
+    key, embed_key = random.split(key)
+    transformer_parameters['E']= init_embedding(embed_key, n_vocab, d_model)
+
+    key, dec_key = random.split(key)
+    dec_keys = random.split(dec_key, n_layers)
+
+    decoder_parameters = [init_decoder(d_k, d_model, n_hidden) for d_k in dec_keys]
+
+    key, out_key = random.split(key)
+    keys = random.split(out_key, 2)
+
+    transformer_parameters['W_out'] = random.normal(keys[0], (d_model, n_vocab)) * (1.0 / jnp.sqrt(d_model))
+    transformer_parameters['b_out'] = random.normal(keys[1], (n_vocab,)) * (1.0 / jnp.sqrt(d_model))
+
+    parameters = {
         'dec': decoder_parameters,
         'trans': transformer_parameters
     }
