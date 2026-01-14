@@ -16,7 +16,7 @@ This project was built to understand the "engine" of Large Language Models by im
 
 *Generated after 5,000 steps of training with temperature=0.8:*
 
->GREGORY BELIZNE:
+>GREGORY BELIZNE:   
 >Poing not, nor his confent thou hast off;
 >And made would reads, my think horse wall powen
 >That far's report on guilss from thee
@@ -26,7 +26,7 @@ This project was built to understand the "engine" of Large Language Models by im
 >Whom me me in his eage to hours: the the deam?
 >If we mutines is my lack of yourself?
 >
->PERDITA:
+>PERDITA:  
 >I must greet those than schall death.
 >If though first that dearne death.
 >Good, ho! mean the did she many like
@@ -53,5 +53,5 @@ This project was built to understand the "engine" of Large Language Models by im
 >To wine their recourse, yet parlies,
 >Belam his grince his ressorved him.
 >
->QUEEN MARGARET:
+>QUEEN MARGARET:  
 >Thou cursed we pressalers in the good of long.
