@@ -2,14 +2,14 @@
 
 A pure JAX implementation of the Transformer architecture.
 
-This project was built to understand the "engine" of Large Language Models by implementing the core architecture, optimization logic, and training loop entirely from scratch using `jax.numpy` and linear algebra, without relying on high-level neural network libraries like Flax, Haiku, or Optax.
+I built this to better understand LLMs and JAX by implementing the core architecture, optimization logic, and training loop entirely from scratch using `jax.numpy` and linear algebra, without relying on high-level neural network libraries like Flax, Haiku, or Optax.
 
 ## Key Features
 
-* **Pure JAX Implementation:** No high-level layers. Multi-Head Attention, LayerNorm, and Feed-Forward blocks are implemented as raw matrix operations.
-* **Custom Optimizer:** Manual implementation of the AdamW optimizer (Adaptive Moment Estimation with Decoupled Weight Decay), including explicit handling of moment tracking and bias correction.
-* **High-Performance Training:** Fully JIT-compiled training steps using `@jax.jit` with static argument handling for maximum speed.
-* **Advanced Regularization:** Implemented Dropout and Cosine Learning Rate Decay with linear warmup to stabilize convergence.
+* **Pure JAX Implementation:** No high-level layers, with Multi-Head Attention, LayerNorm, and Feed-Forward blocks all implemented as raw matrix operations.
+* **Custom Optimizer:** Manual implementation of the AdamW optimizer, including explicit handling of moment tracking and bias correction.
+* **High-Performance Training:** Fully JIT-compiled training steps using `@jax.jit`.
+* **Regularization:** Dropout and Cosine LR scheduling with linear warmup stabilize convergence.
 * **Experiments:** Trained to reverse sequences with 100% accuracy using an Encoder-Decoder Transformer and generate coherent pseudo-Shakespearean text with a perplexity of ~6 using a Decoder-Only Transformer.
 
 ## Sample Shakespeare Output
